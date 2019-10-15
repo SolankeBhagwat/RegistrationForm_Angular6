@@ -1,0 +1,130 @@
+<form [formGroup]="employeeForm" (ngSubmit)="OnSubmit()">
+  <div class="panel-group">
+    <div class="panel panel-primary">
+      <div class="panel-heading">Employee Form</div>
+      <div class="panel-body">
+        <div class="form-group container">
+          <div class="row" [ngClass]="{ 'has-error': formErrors.fullName }">
+            <div class="col-lg-2" align="right">
+              Fullname
+            </div>
+            <div class="col-lg-4">
+              <input id="fullName" class="form-control" formControlName="fullName" name="fullName" />
+            </div>
+            <span *ngIf="formErrors.fullName">
+              {{ formErrors.fullName }}
+            </span>
+          </div>
+          <div class="row">
+            <div class="col-lg-2" align="right">
+              Contact Preference
+            </div>
+            <div class="col-lg-4">
+              <input type="radio" formControlName="ContactPreference" name="ContactPreference" value="email" />Email
+              <input type="radio" formControlName="ContactPreference" name="ContactPreference" value="phone" />Phone
+            </div>
+          </div>
+          <div formGroupName="emailGroup">
+            <div class="row" [ngClass]="{
+                'has-error': formErrors.email || formErrors.emailGroup
+              }">
+              <div class="col-lg-2" align="right">
+                email
+              </div>
+              <div class="col-lg-4">
+                <input id="email" formControlName="email" class="form-control" name="email" />
+              </div>
+              <span *ngIf="formErrors.email">
+                {{ formErrors.email }}
+              </span>
+            </div>
+            <div class="row" [ngClass]="{
+                'has-error': formErrors.confirmEmail || formErrors.emailGroup
+              }">
+              <div class="col-lg-2" align="right">
+                confirm Email
+              </div>
+              <div class="col-lg-4">
+                <input id="confirmEmail" formControlName="confirmEmail" class="form-control" name="confirmEmail" />
+              </div>
+              <span *ngIf="formErrors.confirmEmail">
+                {{
+                  formErrors.confirmEmail
+                    ? formErrors.confirmEmail
+                    : formErrors.emailGroup
+                }}
+              </span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-2" align="right">
+              Phone
+            </div>
+            <div class="col-lg-4">
+              <input id="phone" formControlName="phone" class="form-control" name="phone" />
+            </div>
+            <span *ngIf="formErrors.phone">
+              {{ formErrors.phone }}
+            </span>
+          </div>
+          <div class="row ">
+            <div class="btn-toolbar">
+              <input type="button" (click)="AddSkillButtonClick()" value="Add skills"
+                class="btn btn-primary btn-small" />
+            </div>
+          </div>
+          <div formArrayName="skills" *ngFor="
+            let skill of employeeForm.get('skills').controls;
+            let i = index
+          ">
+            <div [formGroupName]="i" class="row">
+              <div class="col-lg-8">
+                <div class="row">
+                  <div class="col-lg-2" align="right">
+                    skillName
+                  </div>
+                  <div class="col-lg-4">
+                    <input type="text" formControlName="skillName" [id]="'SkillName_'+i" class="form-control" />
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-2" align="right">
+                    ExperienceInYears
+                  </div>
+                  <div class="col-lg-4">
+                    <input type="number" formControlName="ExperienceInYears" [id]="'ExperienceInYears_'+i"
+                      class="form-control" />
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-lg-2" align="right">
+                    proficiency
+                  </div>
+                  <div class="col-lg-4">
+                    <input type="radio" formControlName="Proficiency" name="Proficiency" [id]="'Beginner_'+i"
+                      value="Beginner" />Beginner
+                    <input type="radio" formControlName="Proficiency" name="Proficiency" [id]="'Intermediate_'+i"
+                      value="Intermediate" />Intermediate
+                    <input type="radio" formControlName="Proficiency" name="Proficiency" [id]="'Expert_'+i"
+                      value="Expert" />Expert
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-2">
+                <button (click)="RemoveSkillButtonClick(i)" class="btn btn-danger btn-sm pull-right">
+                  <span class="glyphicon glyphicon-remove"></span>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="btn-toolbar col-lg-4">
+              <input type="submit" value="Save" id="Submit" class="btn btn-primary btn-small" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

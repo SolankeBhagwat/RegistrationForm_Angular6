@@ -1,0 +1,42 @@
+{
+  "employees": [
+    {
+      "id": 1,
+      "name": "bhagwat",
+      "salary": 1200,
+      "Gender": "male",
+      "email": "bsolanke@7gmail.com",
+      "phone": 9766337176,
+      "skills": [
+        {
+          "skillName": "angular",
+          "experienceInYears": 2,
+          "proficiency": "Expert"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "bhagwat",
+      "salary": 1200,
+      "Gender": "male",
+      "email": "bsolanke@7gmail.com",
+      "phone": 9766337176,
+      "skills": [
+        {
+          "skillName": "angular",
+          "experienceInYears": 2,
+          "proficiency": "Expert"
+        }
+      ]
+    }
+  ]
+
+  // "departments": [
+  //   {
+  //     "Id": 1,
+  //     "Name": "MSTECH",
+  //     "Code": "MT"
+  //   }
+  // ]
+}

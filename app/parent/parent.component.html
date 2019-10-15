@@ -1,0 +1,39 @@
+<p>
+  <app-child [all]="GetAllElmployeeCount()" [male]="GetMaleEmployeeCount()" [female]="GetFemaleEmployeeCount()"
+    (OnSelectedRadioButton)="FilterByGenderValue($event)"></app-child>
+</p>
+
+<input type="button" hoverfocus>
+<table class="table table-striped">
+  <thead>
+    <th>Code</th>
+    <th>Name</th>
+    <th>Gender</th>
+    <th>Salary</th>
+    <th>DOB</th>
+  </thead>
+  <tbody>
+    <ng-container *ngFor="let emp of employeeCollection">
+      <tr *ngIf="
+          selectedRadioButtonValue === 'All' ||
+          selectedRadioButtonValue === emp.Gender
+        ">
+        <td>
+          {{ emp.code }}
+        </td>
+        <td>
+          {{ emp.name | uppercase }}
+        </td>
+        <td>
+          {{ emp.Gender }}
+        </td>
+        <td>
+          {{ emp.salary }}
+        </td>
+        <td>
+          {{ emp.dateOfBirth }}
+        </td>
+      </tr>
+    </ng-container>
+  </tbody>
+</table>
